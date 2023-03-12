@@ -1,11 +1,22 @@
 
-
 const btn=document.getElementById("btn");
 const message=document.getElementById("messages");
 
+
 const socket = io();
+ 
 
 socket.on("connect", ()=>{
+
+  fetch('http://localhost:3000/getOrder', {
+    headers: {
+       'Accept': 'application/json'
+    }
+ })
+    .then(response => response.json())
+    .then(text => console.log( 'helo :',text.orders))
+
+
   var text =["Select 1 to Place an order", "Select 99 to checkout order" ,"Select 98 to see order history"," Select 97 to see current order", "Select 0 to cancel order "];
   
     for (var i = 0; i < text.length; i++) {
@@ -19,18 +30,17 @@ socket.on("connect", ()=>{
       message.appendChild(li);
     }
   
-
+    
+  
 
   
-  
- 
 })
 
 
 
 btn.addEventListener("click", function(){
    
-
+  
 
   // let message = inputMessage.value;
   // console.log(message)
@@ -358,3 +368,4 @@ btn.addEventListener("click", function(){
 //   });
 
 // });
+

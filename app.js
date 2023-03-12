@@ -1,26 +1,39 @@
 // Setup basic express server
 const express = require('express');
+const orderRoute = require("./routes/add_order");
 const app = express();
+const bodyParser = require("body-parser");
 const path = require("path");
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
+const { connectToDb } = require("./db");
+
+
 const port = process.env.PORT || 3000;
 
-server.listen(port, () => {
-  console.log('Server listening at port %d', port);
-});
+
 
 // Routing
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 
-// Chatroom
+app.use(orderRoute);
 
-let numUsers = 0;
+
+// Chatroom
+connectToDb();
+
+
+
 
 io.on('connection', (socket) => {
   
   console.log(socket.id)
+  
   // when the client emits 'new message', this listens and executes
 //   socket.on('new message', (data) => {
 //     // we tell the client to execute 'new message'
@@ -74,4 +87,14 @@ io.on('connection', (socket) => {
 //       });
 //     }
 //   });
+
+
 });
+
+
+server.listen(port, () => {
+    console.log('Server listening at port %d', port);
+  
+  
+  });
+  
