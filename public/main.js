@@ -1,8 +1,15 @@
 
 const btn=document.getElementById("btn");
 const message=document.getElementById("messages");
+let generalOrder =[];
+let ordrList= [];
 
+let STAPLEFOOD= [];
+let SOUPS= [];
+let SIDEDISHES= [];
+let MEAT= [];
 
+var addditionalInput;
 let data;
 
 const socket = io();
@@ -52,14 +59,7 @@ function removeDuplicates(arr) {
 
 
 //
-let ordrList= [];
 
-let STAPLEFOOD= [];
-let SOUPS= [];
-let SIDEDISHES= [];
-let MEAT= [];
-
-var addditionalInput;
 function PlaceOrder(){
   
   addditionalInput =  window.prompt("select your order")
@@ -179,14 +179,27 @@ for (var i = 0; i < STAPLEFOOD.length; i++) {
 }
 
 var cancel3 = document.createElement("li");
-cancel3.textContent = 0+ "  " +"back to home page ";
+cancel3.textContent = 4+ "  " +"back to home page ";
 
 message.appendChild(cancel3);
 
 setTimeout(function (){
   addditionalInput =  window.prompt("select your order")
-  var intval= parseInt(addditionalInput)
-  console.log(intval);
+  var selection= parseInt(addditionalInput)
+  //console.log(intval);
+  if(selection == 1){
+generalOrder.push(STAPLEFOOD[0])
+  }
+  if(selection == 2){
+    generalOrder.push(STAPLEFOOD[1])
+      }
+      if(selection == 3){
+        generalOrder.push(STAPLEFOOD[2])
+          }
+          if(selection == 4){
+            socket.on("connect")
+              }
+console.log(generalOrder)
 },2000)
 
 console.log(STAPLEFOOD);
@@ -231,7 +244,20 @@ message.appendChild(cancel2);
 
 setTimeout(function (){
   addditionalInput =  window.prompt("select your order")
-  var intval= parseInt(addditionalInput)
+  var selection2 = parseInt(addditionalInput);
+  if(selection2 == 1){
+    generalOrder.push(SOUPS[0])
+      }
+      if(selection2 == 2){
+        generalOrder.push(SOUPS[1])
+          }
+          if(selection2 == 3){
+            generalOrder.push(SOUPS[2])
+              }
+              if(selection2 == 4){
+                socket.on("connect")
+                  }
+    console.log(generalOrder)
   console.log(intval);
 },2000)
 }
@@ -275,8 +301,21 @@ message.appendChild(cancel1);
 
 setTimeout(function (){
   addditionalInput =  window.prompt("select your order")
-  var intval= parseInt(addditionalInput)
-  console.log(intval);
+ var selection3 = parseInt(addditionalInput)
+  if(selection3 == 1){
+    generalOrder.push(SIDEDISHES[0])
+      }
+      if(selection3 == 2){
+        generalOrder.push(SIDEDISHES[1])
+          }
+          if(selection3 == 3){
+            generalOrder.push(SIDEDISHES[2])
+              }
+              if(selection3 == 4){
+                socket.on("connect")
+                  }
+    console.log(generalOrder)
+  
 },2000)
 
 }
@@ -319,8 +358,24 @@ message.appendChild(cancel);
 
 setTimeout(function (){
   addditionalInput =  window.prompt("select your order")
-  var intval= parseInt(addditionalInput)
-  console.log(intval);
+
+
+  var selection4 = parseInt(addditionalInput)
+  if(selection4 == 1){
+    generalOrder.push(MEAT[0])
+      }
+      if(selection4 == 2){
+        generalOrder.push(MEAT[1])
+          }
+          if(selection4 == 3){
+            generalOrder.push(MEAT[2])
+              }
+              if(selection4 == 4){
+                socket.on("connect")
+                  }
+    console.log(generalOrder)
+
+
 },2000)
 
 
