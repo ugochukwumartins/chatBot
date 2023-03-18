@@ -18,7 +18,7 @@ const socket = io();
 socket.on("connect", ()=>{
   
 
-  fetch('http://localhost:3000/getOrder', {
+  fetch('https://ugocahatboat.onrender.com/getOrder', {
     headers: {
        'Accept': 'application/json'
     }
