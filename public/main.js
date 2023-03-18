@@ -16,6 +16,7 @@ const socket = io();
  
 
 socket.on("connect", ()=>{
+  
 
   fetch('http://localhost:3000/getOrder', {
     headers: {
@@ -89,53 +90,6 @@ if(intval == 1){
 }
 
 
-// if(intval == 2){
-
-//   var lo = document.createElement("li");
-//   lo.appendChild(document.createTextNode(intval));
-//   message.appendChild(li);
-//   if (intval) {
-    
-//     socket.emit('new message', intval);
-//   }
-
-
-//   var li = document.createElement("li");
-//   li.textContent = 1 +"  "+ MEAT[1];
-//   message.appendChild(li);
-
-//   var l2 = document.createElement("li");
-//   l2.textContent = 2 +"  "+  "Place Order ";
-//  message.appendChild(l2);
-
-//   var l3 = document.createElement("li");
-//   l3.textContent = 0 +"  "+  "Go to main Menue";
-//   message.appendChild(l3);
-// }
-
-// if(intval == 3){
-
-//   var lo = document.createElement("li");
-//   lo.appendChild(document.createTextNode(intval));
-//   message.appendChild(li);
-//   if (intval) {
-    
-//     socket.emit('new message', intval);
-//   }
-
-
-//   var li = document.createElement("li");
-//   li.textContent = 1 +"  "+ MEAT[2];
-//   message.appendChild(li);
-
-//   var l2 = document.createElement("li");
-//   l2.textContent = 2 +"  "+  "Place Order ";
-//  message.appendChild(l2);
-
-//   var l3 = document.createElement("li");
-//   l3.textContent = 0 +"  "+  "Go to main Menue";
-//   message.appendChild(l3);
-// }
 
 }
 
@@ -431,74 +385,42 @@ console.log(filterData)
    
   // let message = inputMessage.value;
   if(inputMessage == 99){
+  if(generalOrder.length > 0){
+    let id = Math.floor((Math.random() * 10000) + 1);
+    localStorage.setItem(id, JSON.stringify(generalOrder))
+   var objArray= localStorage.getItem(id);
+  let NewobjArray= JSON.parse(objArray);
+  //
+  var orderVal = document.createElement("li");
+  orderVal.textContent = " order placed ";
+   message.appendChild(orderVal);
+  
 
-  //   var li = document.createElement("li");
-  //   li.appendChild(document.createTextNode(inputMessage));
-  //   message.appendChild(li);
-  //   if (inputMessage) {
-      
-  //     socket.emit('new message', inputMessage);
-  //   }
-  
-  //   for (var i = 0; i < data.length; i++) {
-  //     // Create DOM element
-  //    console.log(data[i]["categoris"])
-  //   //  var li = document.createElement("li");
-        
-  // ordrList.push(data[i]["categoris"])
-  // }
-  
-  // console.log(ordrList);
-  // var filterData = removeDuplicates(ordrList)
-  
-  // for (var i = 0; i < filterData.length; i++) {
-  //   // Create DOM element
-  //  var li = document.createElement("li");
-        
-  //   // Set text of element
-  //   li.textContent = i +"  "+ filterData[i];
-  
-  //   // Append this element to its parent
-  //   message.appendChild(li);
-  // }
-  // console.log(filterData)
+  //
+  }
+else{
   var li = document.createElement("li");
-  li.textContent = 'No order to place'
+  li.textContent = 'No order to place' + "1 click One to Place Order"
   message.appendChild(li);
+}
+   
+
+
     }
 
     if(inputMessage == 98){
 
-      var li = document.createElement("li");
-      li.appendChild(document.createTextNode(inputMessage));
-      message.appendChild(li);
-      if (inputMessage) {
-        
-        socket.emit('new message', inputMessage);
-      }
-    
-      for (var i = 0; i < data.length; i++) {
+      for (var i = 0; i < generalOrder.length; i++) {
         // Create DOM element
-       console.log(data[i]["categoris"])
-      //  var li = document.createElement("li");
-          
-    ordrList.push(data[i]["categoris"])
-    }
-    
-    console.log(ordrList);
-    var filterData = removeDuplicates(ordrList)
-    
-    for (var i = 0; i < filterData.length; i++) {
-      // Create DOM element
-     var li = document.createElement("li");
-          
-      // Set text of element
-      li.textContent = i +"  "+ filterData[i];
-    
-      // Append this element to its parent
-      message.appendChild(li);
-    }
-    console.log(filterData)
+       var li = document.createElement("li");
+            
+        // Set text of element
+        li.textContent = generalOrder[i];
+      
+        // Append this element to its parent
+        message.appendChild(li);
+        
+      }
       }
       if(inputMessage == 97){
 
@@ -534,37 +456,8 @@ console.log(filterData)
       console.log(filterData)
         }
         if(inputMessage == 0){
-
-          var li = document.createElement("li");
-          li.appendChild(document.createTextNode(inputMessage));
-          message.appendChild(li);
-          if (inputMessage) {
-            
-            socket.emit('new message', inputMessage);
-          }
-        
-          for (var i = 0; i < data.length; i++) {
-            // Create DOM element
-           console.log(data[i]["categoris"])
-          //  var li = document.createElement("li");
-              
-        ordrList.push(data[i]["categoris"])
-        }
-        
-        console.log(ordrList);
-        var filterData = removeDuplicates(ordrList)
-        
-        for (var i = 0; i < filterData.length; i++) {
-          // Create DOM element
-         var li = document.createElement("li");
-              
-          // Set text of element
-          li.textContent = i +"  "+ filterData[i];
-        
-          // Append this element to its parent
-          message.appendChild(li);
-        }
-        console.log(filterData)
+          localStorage.clear();
+          generalOrder=[];
           }
 
 });
